@@ -54,8 +54,8 @@ On review, 4 of my own page labels in set 2 were one page too high (the section 
 
 1. Clone and install (Python 3.11):
    ```
-   git clone https://github.com/<your-username>/<repo-name>.git
-   cd <repo-name>
+   git clone https://github.com/anasilahi10/indian-legal-rag.git
+   cd indian-legal-rag
    uv sync
    ```
    Or with pip: `python3.11 -m venv .venv && source .venv/bin/activate && pip install -r requirements.txt`
@@ -64,9 +64,9 @@ On review, 4 of my own page labels in set 2 were one page too high (the section 
 
    | File name | Source |
    |---|---|
-   | `rti_act_en.pdf` | <link> |
-   | `consumer_protection_act_en.pdf` | <link> |
-   | `motor_vehicles_act_en.pdf` | <link> |
+   | `rti_act_en.pdf` | https://cic.gov.in/sites/default/files/RTI-Act_English.pdf |
+   | `consumer_protection_act_en.pdf` | https://consumeraffairs.gov.in/public/upload/files/CP%20Act%202019_1732700731.pdf |
+   | `motor_vehicles_act_en.pdf` | https://chdtransport.gov.in/sites/default/files/documents/MVA1988.pdf |
    | `dpdp_act_en.pdf` | https://www.indiacode.nic.in/bitstream/123456789/22037/2/a2023-22.pdf |
    | `it_act_en.pdf` | https://www.cca.gov.in/sites/files/pdf/ACT/ACT2000.pdf |
 
