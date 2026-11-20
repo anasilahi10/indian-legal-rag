@@ -1,0 +1,11 @@
+id,language,question,document,page,expected_answer
+1,en,Within how many days must a Public Information Officer reply to an RTI application?,rti_act_en.pdf,,
+2,en,What penalty can be imposed on an officer who delays giving information without reasonable cause?,rti_act_en.pdf,,
+3,en,Within how much time must a consumer file a complaint?,consumer_protection_act_en.pdf,,
+4,en,Is third-party insurance compulsory for a motor vehicle?,motor_vehicles_act_en.pdf,,
+5,hi,सूचना का अधिकार अधिनियम के तहत पहली अपील कितने दिनों के भीतर करनी होती है?,rti_act_en.pdf,,
+6,hi,उपभोक्ता के अधिकार कौन-कौन से हैं?,consumer_protection_act_hi.pdf,,
+7,hi,भ्रामक विज्ञापन के लिए केंद्रीय प्राधिकरण कितना जुर्माना लगा सकता है?,consumer_protection_act_hi.pdf,,
+8,hinglish,RTI mein kin cases mein information dene se mana kiya ja sakta hai?,rti_act_en.pdf,,
+9,hinglish,District Commission kya-kya order de sakta hai?,consumer_protection_act_en.pdf,,
+10,hinglish,Driving licence ke liye minimum age kya hai?,motor_vehicles_act_en.pdf,,

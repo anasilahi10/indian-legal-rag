@@ -1,0 +1,20 @@
+# Python
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Environments and secrets
+.venv/
+.env
+
+# Mac
+.DS_Store
+
+# Generated or large data (rebuilt by the pipeline)
+data/raw/
+data/processed/
+data/chroma/
+data/eval/answer_results*.csv

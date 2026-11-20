@@ -1,0 +1,13 @@
+id,language,question,document,page,section,expected_answer
+1,en,Within how many days must a Public Information Officer reply to an RTI application?,rti_act_en.pdf,11,7,30 days; 48 hours for life or liberty cases
+2,en,Within how many days can a person file a first appeal under the RTI Act?,rti_act_en.pdf,19,19,30 days for first appeal; 90 days for second appeal
+3,en,What penalty can be imposed on an officer who delays giving information without reasonable cause?,rti_act_en.pdf,20,20,250 rupees per day up to a maximum of 25000 rupees
+4,en,Within what time must a consumer file a complaint?,consumer_protection_act_en.pdf,28,69,2 years from the date of cause of action; delay may be condoned for sufficient cause
+5,en,What orders can a District Commission pass when it finds that the complaint is proved?,consumer_protection_act_en.pdf,22,39,Remove defects; replace goods; refund price; award compensation and punitive damages; discontinue unfair practices; withdraw hazardous goods
+6,en,What is the Central Consumer Protection Authority and what is it meant to do?,consumer_protection_act_en.pdf,13|14,10 and 18,Regulates consumer rights violations and unfair trade practices; investigates complaints; recalls unsafe goods; protects consumer interests
+7,en,Is third-party insurance compulsory for a motor vehicle?,motor_vehicles_act_en.pdf,170,146,Yes; motor vehicles used in public places must have valid third-party insurance subject to statutory exemptions
+8,en,Is it mandatory to wear protective headgear while riding a motorcycle?,motor_vehicles_act_en.pdf,156,129,Yes; BIS-compliant protective headgear is mandatory; exception for Sikhs wearing turbans and prescribed exemptions
+9,en,On what grounds can personal data be processed under the DPDP Act?,dpdp_act_en.pdf,4|6|7|8,4 and 7,Consent of the Data Principal or certain legitimate uses specified under Section 7
+10,en,What rights does a Data Principal have under the DPDP Act?,dpdp_act_en.pdf,10|11,11 to 14,Right to access information; correction; completion; updating; erasure; grievance redressal; nomination
+11,en,What does the IT Act say about the legal recognition of electronic records?,it_act_en.pdf,7,4,Electronic records have legal recognition if information is made available electronically and remains accessible for subsequent reference
+12,en,What is the penalty for jaywalking in Delhi?,NONE,,,NOT IN DOCUMENTS
