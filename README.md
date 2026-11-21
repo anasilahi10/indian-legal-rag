@@ -21,7 +21,7 @@ Question -> dense search + BM25 keyword search -> rank fusion -> cross-encoder r
 
 ## Results
 
-I wrote my own test questions with the correct page and answer for each, in two sets. The first set (11 questions) was used while tuning. The second set (13 questions) was written afterwards and not used for tuning.
+I wrote my own test questions with the correct page and answer for each, in two sets. The first set (11 questions) was used while choosing the retrieval methods. The second set (13 questions) was written after that choice, but I later corrected four of its page labels and adjusted the answer-stage settings after two questions failed, so neither set is a fully untouched test.
 
 **Retrieval: is the right page in the top 5?**
 
@@ -37,8 +37,9 @@ On review, 4 of my own page labels in set 2 were one page too high (the section 
 
 | Version | Correct | Partial | Wrong |
 |---|---|---|---|
-| Before adding following-chunks context and retrieval tuning | 19/24 | 3/24 | 2/24 |
-| Current | **22/24** | 2/24 | 0/24 |
+| Passages sent to the LLM: 5, similarity gate 0.60 | 19/24 | 3/24 | 2/24 |
+| Passages sent to the LLM: 8, similarity gate 0.55 (current) | **22/24** | 2/24 | 0/24 |
+Both runs used a free OpenRouter model and a free LLM judge. The two WRONG answers in the first run were refusals ("I could not find this"), not invented facts.
 
 **Refusals:** 3/3 out-of-scope questions were correctly refused (e.g. jaywalking fines, a state minimum wage).
 
@@ -60,6 +61,8 @@ Caveats: single runs; an LLM judge can be lenient or strict; the questions were 
 - English only for now. Hindi/Hinglish and voice input are planned.
 - The RTI PDF is a scan, so its text has small OCR errors.
 - Not legal advice.
+- Each question is answered independently, with no conversation memory.
+- Refusal behaviour was tested on only 3 out-of-scope questions.
 
 ## Choose an LLM provider
 
@@ -83,7 +86,7 @@ Use `LLM_PROVIDER=openrouter` with an OpenRouter model id to switch. Free tiers 
    uv sync
    ```
    Or with pip: `python3.11 -m venv .venv && source .venv/bin/activate && pip install -r requirements.txt`
-2. Create `.env` from `.env.example` and add your OpenRouter API key.
+2. Create `.env` from `.env.example` and add your Groq or OpenRouter API key (see "Choose an LLM provider" above).
 3. Download the PDFs into `data/raw/` using these names:
 
    | File name | Source |
