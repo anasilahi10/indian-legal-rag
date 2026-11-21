@@ -9,9 +9,10 @@ from backend.retriever import _load, retrieve
 
 load_dotenv()
 
+_provider = config.PROVIDERS[config.LLM_PROVIDER]
 client = OpenAI(
-    base_url="https://openrouter.ai/api/v1",
-    api_key=os.getenv("OPENROUTER_API_KEY"),
+    base_url=_provider["base_url"],
+    api_key=os.getenv(_provider["key_env"]),
 )
 
 NOT_FOUND = "I could not find this in the provided documents."

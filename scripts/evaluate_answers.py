@@ -47,7 +47,7 @@ def with_retry(fn, tries=4):
         try:
             return fn()
         except openai.RateLimitError as e:
-            if "free-models-per-day" in str(e):
+            if any(k in str(e) for k in ("free-models-per-day", "per day", "TPD", "RPD")):
                 raise DailyLimit(str(e))
             if attempt == tries - 1:
                 raise
@@ -125,7 +125,7 @@ def main() -> None:
             writer.writerow(record)
             out.flush()
             print(f"[{verdict:<8}] Q{row['id']}: {reason}")
-            time.sleep(1)
+            time.sleep(float(os.getenv("PAUSE", "1")))
 
     n = len(results)
     print("\n" + "=" * 50)

@@ -1,6 +1,9 @@
 """All the settings in one place, so we can change them without editing the logic."""
 from pathlib import Path
 import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 os.environ.setdefault("TOKENIZERS_PARALLELISM", "false")
 
@@ -16,7 +19,7 @@ COLLECTION_NAME = "legal_docs"
 EMBEDDING_MODEL = "BAAI/bge-small-en-v1.5"
 
 TOP_K = 5  # how many chunks the search returns
-LLM_MODEL = os.getenv("LLM_MODEL", "openrouter/free")
+
 MIN_SCORE = 0.55               # below this similarity, say "not found"
 
 
@@ -27,4 +30,14 @@ RETRIEVAL_MODE = "rerank"    # "dense", "hybrid" or "rerank"; we switch after te
 
 CONTEXT_AFTER = 2  # also send this many following chunks with each retrieved chunk
 CHUNK_OVERLAP = 200  # must match CHUNK_OVERLAP in backend/ingest.py
-ANSWER_TOP_K = 8  # passages sent to the LLM (retrieval scores still use TOP_K)
+ANSWER_TOP_K = int(os.getenv("ANSWER_TOP_K", "8"))
+# Which service answers: "openrouter" or "groq" (set LLM_PROVIDER in the shell)
+LLM_PROVIDER = os.getenv("LLM_PROVIDER", "openrouter")
+PROVIDERS = {
+    "openrouter": {"base_url": "https://openrouter.ai/api/v1", "key_env": "OPENROUTER_API_KEY"},
+    "groq": {"base_url": "https://api.groq.com/openai/v1", "key_env": "GROQ_API_KEY"},
+}
+LLM_MODEL = os.getenv(
+    "LLM_MODEL",
+    "openrouter/free" if LLM_PROVIDER == "openrouter" else "llama-3.3-70b-versatile",
+)

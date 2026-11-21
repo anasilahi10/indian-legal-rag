@@ -12,12 +12,12 @@ Ask questions about five Indian laws and get answers with page-level citations. 
 ```
 PDFs -> clean + chunk (page-aware) -> embeddings (bge-small) -> ChromaDB
 Question -> dense search + BM25 keyword search -> rank fusion -> cross-encoder reranker
-         -> top passages (+ following chunks) -> LLM via OpenRouter -> answer + citations
+         -> top passages (+ following chunks) -> LLM via OpenRouter or Groq -> answer + citations
 ```
 
 - **Backend:** FastAPI (`/ask`, `/health`)
-- **Frontend:** Streamlit chat with a sources panel and a model switcher (any OpenRouter model id)
-- **Everything runs on free tools:** local embeddings and reranker, free OpenRouter models
+- **Frontend:** Streamlit chat with a sources panel and a model switcher (any model id of the configured provider)
+- **Everything runs on free tools:** local embeddings and reranker, free-tier OpenRouter or Groq models
 
 ## Results
 
@@ -42,6 +42,17 @@ On review, 4 of my own page labels in set 2 were one page too high (the section 
 
 **Refusals:** 3/3 out-of-scope questions were correctly refused (e.g. jaywalking fines, a state minimum wage).
 
+**Answer-model comparison** (13 held-out questions, one run each, judged by `qwen/qwen3.8-27b`):
+
+| Answer model | Correct | Partial | Wrong |
+|---|---|---|---|
+| openai/gpt-oss-120b (Groq) | 12/13 | 1/13 | 0/13 |
+| openai/gpt-oss-20b (Groq) | 12/13 | 1/13 | 0/13 |
+
+Both models missed the same detail on one question (an "as soon as practicable" qualifier on the RTI transfer rule). With 13 questions and one run each, the two are effectively tied. Refusal check on 3 out-of-scope questions: 3/3.
+
+Caveats: single runs; an LLM judge can be lenient or strict; the questions were also used to tune retrieval, so scores are optimistic. An earlier run with a same-family judge scored 13/13 for the 120b model, which shows how much the judge choice matters.
+
 ### Limitations
 - Small test sets (24 questions). The numbers show the approach works, not that it is 100% reliable.
 - The final configuration was tuned on questions I had already seen, so treat the scores as optimistic.
@@ -49,6 +60,19 @@ On review, 4 of my own page labels in set 2 were one page too high (the section 
 - English only for now. Hindi/Hinglish and voice input are planned.
 - The RTI PDF is a scan, so its text has small OCR errors.
 - Not legal advice.
+
+## Choose an LLM provider
+
+The answer model is called through an OpenAI-compatible API. Set these in `.env`:
+
+```
+OPENROUTER_API_KEY=your_key_here
+GROQ_API_KEY=your_key_here
+LLM_PROVIDER=groq
+LLM_MODEL=openai/gpt-oss-120b
+```
+
+Use `LLM_PROVIDER=openrouter` with an OpenRouter model id to switch. Free tiers have rate limits, and model ids change over time.
 
 ## Run it yourself
 
